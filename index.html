@@ -1,25 +1,54 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <link href="assets/favicon.ico" rel="shortcut icon" />
   <link rel="stylesheet" href="css/owfont-regular.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css"
+    integrity="sha512-SzlrxWUlpfuzQ+pcUCosxcglQRNAq/DZjVsC0lE40xsADsfeQoEypE+enwcOiGjk/bSuGGKHEyjSoQ1zVisanQ=="
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
   <link rel="stylesheet" href="css/style.css" />
   <title>momentum</title>
 </head>
+
 <body>
+  <!-- <i class="fa-solid fa-clipboard-list"></i> -->
   <header class="header">
-    <div class="player">
+    <div class="player widget hidden" data-widget-name="player">
       <div class="player-controls">
         <button class="play-prev player-icon"></button>
         <button class="play player-icon"></button>
         <button class="play-next player-icon"></button>
+        <div class="volume-controls">
+          <div class="volume-button">
+            <i class="fa-solid fa-volume-up"></i>
+          </div>
+          <div class="volume-bar">
+            <div class="volume-value"></div>
+          </div>
+        </div>
       </div>
+
+      <div class="player-progress_bar">
+        <div class="player-progress_info">
+          <div class="player-song_name"></div>
+          <div class="player-timeline">
+            <div class="player-progress"></div>
+          </div>
+        </div>
+        <div class="player-time_values">
+          <div class="player-current_time">0:00</div>
+          /
+          <div class="player-song_duration">0:00</div>
+        </div>
+      </div>
+
       <ul class="play-list"></ul>
     </div>
-    <div class="weather">
-      <input type="text" class="city" />
+    <div class="weather widget hidden" data-widget-name="weather">
+      <input type="text" class="city" placeholder="[Enter city]" />
       <i class="weather-icon owf"></i>
       <div class="weather-error"></div>
       <div class="description-container">
@@ -35,20 +64,172 @@
       <button class="slide-prev slider-icon"></button>
       <button class="slide-next slider-icon"></button>
     </div>
-    <time class="time"></time>
-    <date class="date"></date>
-    <div class="greeting-container">
+    <time class="time widget hidden" data-widget-name="time"></time>
+    <date class="date widget hidden" data-widget-name="date"></date>
+    <div class="greeting-container widget hidden" data-widget-name="greeting">
       <span class="greeting"></span>
-      <input type="text" class="name" />
+      <span class="name-width"></span>
+      <input type="text" class="name" placeholder="[Enter name]" />
     </div>
   </main>
   <footer class="footer">
-    <button class="change-quote"></button>
-    <div>
-      <div class="quote"></div>
-      <div class="author"></div>
+    <div class="settings-container">
+      <div class="settings settings-hidden" data-language="en">
+        <div class="settings-language settings-section">
+          <h3 class="settings-header">Language:</h3>
+          <div class="settings-options">
+            <div class="settings-option" data-setting="language" data-value="en">
+              En
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="language" data-value="ru">
+              Ru
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="settings-api settings-section">
+          <h3 class="settings-header">Images:</h3>
+          <div class="settings-options">
+            <div class="settings-option" data-setting="photoSource" data-value="github">
+              Github
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="photoSource" data-value="unsplash">
+              Unsplash
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="photoSource" data-value="flickr">
+              Flickr
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <input type="text" class="settings-tag" placeholder="[Add a tag]">
+            <i class="fa-solid fa-xmark settings-tag-clear"></i>
+          </div>
+        </div>
+        <div class="settings-widgets settings-section">
+          <h3 class="settings-header">Widgets:</h3>
+          <div class="settings-options">
+            <div class="settings-option" data-setting="widgets" data-value="weather">
+              Weather
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="widgets" data-value="player">
+              Player
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="widgets" data-value="todo">
+              ToDo List
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="widgets" data-value="quote">
+              Quote
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="widgets" data-value="greeting">
+              Greeting
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="widgets" data-value="date">
+              Date
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+            <div class="settings-option" data-setting="widgets" data-value="time">
+              Time
+              <div class="settings-toggle">
+                <div class="settings-toggle-inner"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <i class="fa-solid fa-gears settings-btn"></i>
+    </div>
+    <div class="quote-section widget hidden" data-widget-name="quote">
+      <button class="change-quote"></button>
+      <div>
+        <div class="quote"></div>
+        <div class="author"></div>
+      </div>
+    </div>
+    <div class="footer-links">
+      <div class="todo-list-container widget hidden" data-widget-name="todo">
+        <!-- <i class="fa-solid fa-list-squares todo-list_icon"></i> -->
+        <div class="todo-list todo-hidden">
+          <h3 class="todo-header">To Do</h3>
+          <ul class="todo-list-todo">
+            <li class="todo-list-item">
+              <i class="fa-regular fa-square todo-checkbox"></i>
+              <span class="todo-text">помыть посуду</span>
+              <i class="fa-solid fa-trash todo-trashcan"></i>
+            </li>
+            <li class="todo-list-item">
+              <i class="fa-regular fa-square todo-checkbox"></i>
+              <span class="todo-text">вынести мусор</span>
+              <i class="fa-solid fa-trash todo-trashcan"></i>
+            </li>
+            <li class="todo-list-item">
+              <i class="fa-regular fa-square todo-checkbox"></i>
+              <span class="todo-text">пропылесосить</span>
+              <i class="fa-solid fa-trash todo-trashcan"></i>
+            </li>
+          </ul>
+          <div class="todo-input-container">
+            <input type="text" class="todo-input" placeholder="[Add todo]">
+            <i class="fa-regular fa-plus todo-add"></i>
+          </div>
+          <h3 class="todo-header">Done</h3>
+          <ul class="todo-list-todo todo-list-todo_done">
+            <li class="todo-list-item todo-list-item_done">
+              <i class="fa-regular fa-square-check todo-checkbox"></i>
+              <span class="todo-text">помыть посуду</span>
+              <i class="fa-solid fa-trash todo-trashcan"></i>
+            </li>
+            <li class="todo-list-item todo-list-item_done">
+              <i class="fa-regular fa-square-check todo-checkbox"></i>
+              <span class="todo-text">вынести мусор</span>
+              <i class="fa-solid fa-trash todo-trashcan"></i>
+            </li>
+            </li>
+            <li class="todo-list-item todo-list-item_done">
+              <i class="fa-regular fa-square-check todo-checkbox"></i>
+              <span class="todo-text">пропылесосить</span>
+              <i class="fa-solid fa-trash todo-trashcan"></i>
+            </li>
+          </ul>
+        </div>
+        <i class="fa-solid fa-list-check todo-list_icon"></i>
+      </div>
+      <a class="github-link" href="http://github.com/pavelkryuchkov/" target="_blank">
+        <i class="fa-brands fa-github github-icon"></i>
+        <span>2023</span>
+      </a>
+      <a class="rss-link" href="https://rs.school/js-stage0/" target="_blank"></a>
     </div>
   </footer>
-  <script src="js/script.js"></script>
+  <script src="js/script.js" type="module"></script>
 </body>
+
 </html>
