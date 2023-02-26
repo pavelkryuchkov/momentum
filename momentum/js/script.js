@@ -739,6 +739,9 @@ function openTodo(e) {
 }
 
 function addTodo(e) {
+  if (todoInput.value === '') {
+    return;
+  }
   const todo = {
     id: Date.now().toString(),
     text: todoInput.value,
