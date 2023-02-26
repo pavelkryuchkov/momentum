@@ -19,5 +19,10 @@ const playList = [
     src: './assets/sounds/Ennio Morricone.mp3',
     duration: '1:37',
   },
+  {
+    title: 'Собака бывает кусачей',
+    src: './assets/sounds/Sobaka.mp3',
+    duration: '3:31',
+  },
 ];
 export default playList;

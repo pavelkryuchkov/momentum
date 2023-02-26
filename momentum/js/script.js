@@ -236,6 +236,7 @@ changeQuoteButton.addEventListener('click', getQuotes);
 // Аудиоплеер
 
 import playList from './playList.js';
+let currentPlayList;
 const audio = new Audio();
 const playListContainer = document.querySelector('.play-list');
 const playButton = document.querySelector('.play');
@@ -255,16 +256,24 @@ let playNum = 0;
 let prevVolume,
   currentVolume = 0.5;
 
-playList.forEach((el) => {
-  const li = document.createElement('li');
-  li.classList.add('play-item');
-  const itemBtn = document.createElement('i');
-  itemBtn.classList.add('fa-regular', 'fa-circle-play', 'play-item_btn');
-  li.textContent = el.title;
-  li.prepend(itemBtn);
-  li.addEventListener('click', handlePlayItemClick);
-  playListContainer.append(li);
-});
+function dispayPlaylist() {
+  if (!state.dogLover) {
+    currentPlayList = playList.slice(0, -1);
+  } else {
+    currentPlayList = playList;
+  }
+  playListContainer.innerHTML = '';
+  currentPlayList.forEach((el) => {
+    const li = document.createElement('li');
+    li.classList.add('play-item');
+    const itemBtn = document.createElement('i');
+    itemBtn.classList.add('fa-regular', 'fa-circle-play', 'play-item_btn');
+    li.textContent = el.title;
+    li.prepend(itemBtn);
+    li.addEventListener('click', handlePlayItemClick);
+    playListContainer.append(li);
+  });
+}
 
 function playAudio() {
   if (!isPlay) {
@@ -292,13 +301,13 @@ function toggleBtn() {
 }
 
 function playPrev() {
-  playNum = playNum === 0 ? playList.length - 1 : playNum - 1;
+  playNum = playNum === 0 ? currentPlayList.length - 1 : playNum - 1;
   isPlay = false;
   playAudio();
 }
 
 function playNext() {
-  playNum = playNum === playList.length - 1 ? 0 : playNum + 1;
+  playNum = playNum === currentPlayList.length - 1 ? 0 : playNum + 1;
   isPlay = false;
   playAudio();
 }
@@ -463,6 +472,16 @@ function handleVolumeBtnClick() {
   setVolume();
 }
 
+function playDogSong() {
+  state.dogLover = true;
+  dispayPlaylist();
+  playNum = playList.length - 1;
+  isPlay = false;
+  playAudio();
+}
+
+window.addEventListener('load', dispayPlaylist);
+
 playButton.addEventListener('click', playAudio);
 playPrevButton.addEventListener('click', playPrev);
 playNextButton.addEventListener('click', playNext);
@@ -494,6 +513,7 @@ let state = {
     'player',
     'todo',
   ]),
+  dogLover: false,
 };
 const settings = document.querySelector('.settings');
 const settingsBtn = document.querySelector('.settings-btn');
@@ -538,6 +558,12 @@ function handleToggleBtnClick(e) {
 function handleTagInputChange() {
   state.photoTag = tagInput.value;
   setBg();
+  if (
+    ['dog', 'dogs', 'puppy', 'puppys', 'puppies'].includes(tagInput.value) &&
+    !state.dogLover
+  ) {
+    playDogSong();
+  }
   tagInput.blur();
 }
 
