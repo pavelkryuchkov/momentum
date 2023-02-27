@@ -34,6 +34,7 @@ body {
 
 .player {
   user-select: none;
+  z-index: 1;
 }
 
 .player-controls {
@@ -401,6 +402,7 @@ body {
   height: 61px;
   text-align: left;
   position: relative;
+  z-index: 2;
 }
 
 .settings {
