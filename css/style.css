@@ -584,7 +584,7 @@ body {
 .todo-list {
   position: absolute;
   bottom: 66px;
-  left: -125px;
+  right: -10px;
   width: 280px;
   /* height: 400px; */
   padding: 20px;

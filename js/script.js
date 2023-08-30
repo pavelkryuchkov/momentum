@@ -18,7 +18,7 @@ function getLocalStorage() {
   if (localStorage.getItem('city')) {
     city.value = localStorage.getItem('city');
   } else {
-    city.value = 'Minsk';
+    city.value = 'Astana';
   }
   if (localStorage.getItem('playerVolume')) {
     currentVolume = parseFloat(localStorage.getItem('playerVolume'));
@@ -664,13 +664,13 @@ function translateApp(language) {
 
 function translateWeather(language) {
   if (language === 'ru') {
-    if (city.value === 'Minsk') {
-      city.value = 'Минск';
+    if (city.value === 'Astana') {
+      city.value = 'Астана';
     }
     city.setAttribute('placeholder', '[Введите город]');
   } else {
-    if (city.value === 'Минск') {
-      city.value = 'Minsk';
+    if (city.value === 'Астана') {
+      city.value = 'Astana';
     }
     city.setAttribute('placeholder', '[Enter city]');
   }
